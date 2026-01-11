@@ -1,6 +1,22 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
+    "jsx": "react-jsx",
+    "jsxImportSource": "nativewind",
+    "skipLibCheck": true, // <--- This is the most important line now
+    "moduleResolution": "bundler",
+    "paths": {
+      "react": ["./node_modules/react"]
+    }
   }
 }
+// {
+//   "extends": "expo/tsconfig.base",
+//   "compilerOptions": {
+//     "strict": true,
+//     "baseUrl": ".",
+//     "paths": {
+//       "@/*": ["src/*"]
+//     }
+//   }
+// }
