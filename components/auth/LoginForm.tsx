@@ -28,7 +28,8 @@ const LoginForm = () => {
     });
   }
 
-  function handleSubmit() {
+  const [isLoading, setIsLoading] = useState(false);
+  async function handleSubmit() {
     resetErrors();
     if (!formData.email || (formData.email && !isValidEmail(formData.email))) {
       setErrors({
@@ -45,7 +46,7 @@ const LoginForm = () => {
     if (errors.email || errors.password) {
       return;
     }
-
+    navigation.replace('dashboard');
     // make a post request
   }
 
@@ -90,13 +91,14 @@ const LoginForm = () => {
         <Button
           variant="link"
           label="Forgot Password?"
-          className="!px-0 !py-0 mt-3"
+          className="mt-3 !px-0 !py-0"
           onPress={() => navigation.replace('forgot_password', { email: formData.email })}
         />
       </View>
       <View className="mt-6">
         <Button
           label="Login"
+          isLoading={isLoading}
           disabled={!formData.email || !formData.password}
           onPress={handleSubmit}
         />

@@ -4,10 +4,11 @@ import { COLORS } from '../../constants/colors';
 import LoadingSpinner from './Loader';
 
 interface ButtonProps {
-  label: string;
+  label?: string;
   onPress: () => void;
   isLoading?: boolean;
   className?: string;
+  style?: any;
   textClassName?: string;
   variant?: 'outline' | 'ghost' | 'link' | 'solid';
   disabled?: boolean;
@@ -18,6 +19,7 @@ const Button = ({
   label,
   isLoading,
   className,
+  style,
   onPress,
   variant = 'solid',
   disabled,
@@ -32,7 +34,7 @@ const Button = ({
         transform: [{ scale: pressed ? 0.95 : 1 }],
       })}>
       <View
-        className={`flex-row items-center justify-center rounded-xl px-6 py-4 ${variant === 'solid' ? 'bg-primary' : variant === 'outline' ? 'border border-primary bg-transparent' : variant === 'ghost' ? 'bg-primary/10' : 'bg-transparent'} ${disabled ? 'opacity-35' : ''}  ${className}`}>
+        className={`flex-row items-center justify-center rounded-xl px-6 py-4 ${variant === 'solid' ? 'bg-primary' : variant === 'outline' ? 'border border-primary bg-transparent' : variant === 'ghost' ? 'bg-primary/10' : 'bg-transparent'} ${disabled ? 'opacity-35' : ''}  ${className}`} style={style}>
         {isLoading ? (
           <LoadingSpinner>
             <AntDesign

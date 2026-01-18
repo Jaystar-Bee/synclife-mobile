@@ -4,4 +4,8 @@ export type RootStackParamList = {
   login: undefined;
   register: { email?: string };
   forgot_password: { email?: string };
+  dashboard: undefined;
+  dashboardCalendar: undefined;
+  dashboardInsight: undefined;
+  dashboardSettings: undefined;
 };

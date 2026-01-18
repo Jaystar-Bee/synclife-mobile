@@ -9,6 +9,7 @@ import WelcomeScreen from './screens/welcome/WelcomeScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import LoginScreen from './screens/auth/LoginScreen';
 import RegisterScreen from './screens/auth/RegisterScreen';
+import DashboardApp from './DashboardApp';
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -18,9 +19,11 @@ export default function App() {
         <NavigationContainer>
           <StatusBar style="light" />
           <Stack.Navigator
+            initialRouteName="dashboard"
             screenOptions={{
               headerShown: false,
               contentStyle: { backgroundColor: COLORS.BACKGROUND },
+              animation: 'slide_from_right',
             }}>
             <Stack.Group options={{ headerShown: false }}>
               <Stack.Screen name="splash" component={SplashScreen} />
@@ -31,6 +34,7 @@ export default function App() {
               <Stack.Screen name="login" component={LoginScreen} />
               <Stack.Screen name="register" component={RegisterScreen} />
             </Stack.Group>
+            <Stack.Screen name="dashboard" component={DashboardApp} />
           </Stack.Navigator>
         </NavigationContainer>
       </SafeAreaProvider>

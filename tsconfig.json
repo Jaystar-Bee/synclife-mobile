@@ -4,7 +4,10 @@
     "jsx": "react-jsx",
     "jsxImportSource": "nativewind",
     "skipLibCheck": true, // <--- This is the most important line now
-    "moduleResolution": "bundler",
+    // "moduleResolution": "bundler",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "paths": {
       "react": ["./node_modules/react"]
     }

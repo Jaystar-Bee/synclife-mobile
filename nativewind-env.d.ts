@@ -11,5 +11,12 @@ declare module "react" {
   // This ensures the compiler sees components as valid JSX elements
   interface Attributes {
     className?: string;
+    style?: React.CSSProperties;
+  }
+  
+  // This targets the base interface for all JSX elements in React 18
+  interface DOMAttributes<T> {
+    className?: string;
+    style?: React.CSSProperties;
   }
 }
