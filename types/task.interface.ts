@@ -1,0 +1,18 @@
+export enum CategoryE {
+  WORK = 'WORK',
+  PERSONAL = 'PERSONAL',
+  SHOPPING = 'SHOPPING',
+  HEALTH = 'HEALTH',
+  FAMILY = 'FAMILY',
+  TRAVEL = 'TRAVEL',
+  FINANCE = 'FINANCE',
+  EDUCATION = 'EDUCATION',
+  ENTERTAINMENT = 'ENTERTAINMENT',
+  OTHER = 'OTHER',
+}
+
+export enum PriorityE {
+  LOW = 'LOW',
+  MEDIUM = 'MEDIUM',
+  HIGH = 'HIGH',
+}

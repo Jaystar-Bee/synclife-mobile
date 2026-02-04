@@ -1,11 +1,9 @@
 import {
   Modal,
   Pressable,
-  StyleProp,
   Text,
   useWindowDimensions,
   View,
-  ViewStyle,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { getDefaultHeaderHeight } from '@react-navigation/elements';
@@ -14,7 +12,7 @@ import { BottomTabNavigationProp } from '@react-navigation/bottom-tabs';
 import { ParamListBase } from '@react-navigation/native';
 import Button from './Button';
 import Foundation from '@expo/vector-icons/Foundation';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { COLORS } from '../../constants/colors';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
@@ -23,7 +21,7 @@ import HabitForm from '../dashboard/form/HabitForm';
 
 interface TheHeaderProps {
   title: string;
-  navigation: BottomTabNavigationProp<ParamListBase>;
+  navigation?: BottomTabNavigationProp<ParamListBase>;
   style?: any;
 }
 
@@ -82,16 +80,18 @@ const TheHeader = ({ title, navigation, style }: TheHeaderProps) => {
       ]}>
       <View>
         <Text className="text-2xl font-bold text-white">{title}</Text>
-        <Text className="pt-2 text-[#c1c1c1]">{today}</Text>
+        <Text className="pt-2 text-[#c1c1c1] text-sm">{today}</Text>
       </View>
       <View className="flex-row items-center gap-4">
         <View className="flex-row items-center gap-3 rounded-full border border-gray-500 px-4 py-2.5">
-          <View className={`h-3 w-3 rounded-full ${'bg-green-500'}`}></View>
-          <Text className="text-sm text-white">Synced</Text>
+          <View className={`h-3.5 w-3.5 rounded-full ${'bg-green-500'}`}></View>
+          <Text className="text-xs text-white">Synced</Text>
         </View>
 
-        <Button className="px-[15px] py-3" onPress={() => setShowMore(true)}>
-          <Foundation name="plus" size={14} color="white" />{' '}
+        <Button
+          className="flex-row items-center justify-center px-[15px] py-3"
+          onPress={() => setShowMore(true)}>
+          <Foundation name="plus" size={14} color="white" />
         </Button>
         <Modal transparent visible={showMore} animationType="fade">
           <Pressable className="flex-1 bg-black/10" onPress={() => setShowMore(false)} />
@@ -117,7 +117,12 @@ const TheHeader = ({ title, navigation, style }: TheHeaderProps) => {
           </View>
         </Modal>
 
-        <Modal visible={showFormModal} animationType="fade" presentationStyle="formSheet" onRequestClose={()=> setShowFormModal(false)}>
+        <Modal
+          visible={showFormModal}
+          animationType="fade"
+          presentationStyle="formSheet"
+          // onRequestClose={() => setShowFormModal(false)}
+        >
           <View className="flex-1 bg-slate-800">
             {showHabitForm && <HabitForm closeModal={() => setShowHabitForm(false)} />}
             {showTaskForm && <TaskForm closeModal={() => setShowTaskForm(false)} />}

@@ -10,34 +10,36 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import LoginScreen from './screens/auth/LoginScreen';
 import RegisterScreen from './screens/auth/RegisterScreen';
 import DashboardApp from './DashboardApp';
-
+import { MenuProvider } from 'react-native-popup-menu';
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
     <>
-      <SafeAreaProvider>
-        <NavigationContainer>
-          <StatusBar style="light" />
-          <Stack.Navigator
-            initialRouteName="dashboard"
-            screenOptions={{
-              headerShown: false,
-              contentStyle: { backgroundColor: COLORS.BACKGROUND },
-              animation: 'slide_from_right',
-            }}>
-            <Stack.Group options={{ headerShown: false }}>
-              <Stack.Screen name="splash" component={SplashScreen} />
-              <Stack.Screen name="welcome" component={WelcomeScreen} />
-            </Stack.Group>
+      <MenuProvider>
+        <SafeAreaProvider>
+          <NavigationContainer>
+            <StatusBar style="light" />
+            <Stack.Navigator
+              initialRouteName="dashboard"
+              screenOptions={{
+                headerShown: false,
+                contentStyle: { backgroundColor: COLORS.BACKGROUND },
+                animation: 'slide_from_right',
+              }}>
+              <Stack.Group options={{ headerShown: false }}>
+                <Stack.Screen name="splash" component={SplashScreen} />
+                <Stack.Screen name="welcome" component={WelcomeScreen} />
+              </Stack.Group>
 
-            <Stack.Group>
-              <Stack.Screen name="login" component={LoginScreen} />
-              <Stack.Screen name="register" component={RegisterScreen} />
-            </Stack.Group>
-            <Stack.Screen name="dashboard" component={DashboardApp} />
-          </Stack.Navigator>
-        </NavigationContainer>
-      </SafeAreaProvider>
+              <Stack.Group>
+                <Stack.Screen name="login" component={LoginScreen} />
+                <Stack.Screen name="register" component={RegisterScreen} />
+              </Stack.Group>
+              <Stack.Screen name="dashboard" component={DashboardApp} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </SafeAreaProvider>
+      </MenuProvider>
     </>
   );
 }

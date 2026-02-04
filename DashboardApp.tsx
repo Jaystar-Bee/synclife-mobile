@@ -1,4 +1,4 @@
-import { createNativeBottomTabNavigator } from '@react-navigation/bottom-tabs/unstable';
+// import { createNativeBottomTabNavigator } from '@react-navigation/bottom-tabs/unstable';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TodayScreen from './screens/dashboard/TodayScreen';
 import CalendarScreen from './screens/dashboard/CalendarScreen';
@@ -15,25 +15,25 @@ const DashboardApp = () => {
   // const Tab = createNativeBottomTabNavigator();
   return (
     <Tab.Navigator
+      id={'dashboard'}
+      initialRouteName="dashboardToday"
       screenOptions={{
         tabBarActiveTintColor: COLORS.PRIMARY,
         tabBarInactiveTintColor: '#cccccc',
         headerStyle: { backgroundColor: COLORS.BACKGROUND },
         headerTitleStyle: { color: 'white' },
-        header: ({ navigation, route, options }) => {
-          const title = getHeaderTitle(options, route.name);
-          return <TheHeader title={title} navigation={navigation} style={options.headerStyle} />;
+        header: (props) => {
+          const title = getHeaderTitle(props?.options, props?.route.name);
+          return <TheHeader title={title} {...props} style={props?.options.headerStyle as any} />;
         },
 
-        tabBarStyle: { paddingTop: 10, paddingBottom: 10 },
-        tabBarBackground: () => COLORS.BACKGROUND,
+        tabBarStyle: { paddingTop: 10, paddingBottom: 10, backgroundColor: COLORS.BACKGROUND },
       }}>
       <Tab.Screen
         name="dashboardToday"
         component={TodayScreen}
         options={{
           title: 'Today',
-          contentStyle: { backgroundColor: COLORS.BACKGROUND },
           tabBarIcon: ({ color }) => <FontAwesome6 name="list-check" size={20} color={color} />,
         }}
       />
